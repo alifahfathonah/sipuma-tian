@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url'] = "http://localhost/sipuma-tian";
-
+$config['base_url'] = "";
+//http://localhost/sipuma-tians
 /*
 |--------------------------------------------------------------------------
 | Index File

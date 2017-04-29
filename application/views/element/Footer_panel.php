@@ -89,6 +89,7 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 
+<script src="http://tinymce.cachefly.net/4.0/tinymce.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 $(function() {

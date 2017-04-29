@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-$route['default_controller'] 			= "C_front";
 $route['panel'] 						= "C_Login";
+$route['default_controller'] 			= "C_front";
+
 
 /*$route['404_override'] 					= '';
 $route['panel'] 						= 'C_panel';
