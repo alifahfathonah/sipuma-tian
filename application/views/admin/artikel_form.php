@@ -40,11 +40,11 @@
                                             <p class="help-block">* Image Type Must JPG/PNG</p>
                                             <?php
                                                 if($stat == 'new'){
-                                                  
+
                                                 }
                                                 else {
                                                     ?>
-                                                         <img width="400px" height="300px" src="<?=site_url() ?>file/blog/<?=$image ?>">
+                                                         <img width="400px" height="300px" src="<?=site_url() ?>file/artikel/<?=$image ?>">
                                                     <?php
                                                 }
                                             ?>
@@ -54,8 +54,8 @@
                                             <label for="exampleInputEmail1">Content</label>
                                             <div class='box-body pad'>
                                                 <textarea id="editor1" name="content" rows="10" cols="80"><?=$content ?>
-                                                </textarea>  
-                                            </div>  
+                                                </textarea>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
@@ -63,10 +63,10 @@
                                             <select name="kategori"  class="form-control">
                                                 <option value="news"> News</option>
                                                 <option value="pengumuman"> Pengumuman</option>
-                                                <option value="kampus"> kampus</option>       
-                                                <option value="elearning"> E-Learning</option>                                            
+                                                <option value="kampus"> kampus</option>
+                                                <option value="elearning"> E-Learning</option>
                                                 <option value="lain-lain"> Lain-lain</option>
-                                            </select> 
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
@@ -74,9 +74,9 @@
                                             <select name="status"  class="form-control">
                                                 <option value="1"> Publish</option>
                                                 <option value="0"> Draft</option>
-                                            </select> 
+                                            </select>
                                         </div>
-                                       
+
 
                                     </div>
 
@@ -93,9 +93,9 @@
                                         </button>
                                     </div>
                                 </form>
-                         
-                      
-                   
+
+
+
 
 
 
@@ -110,6 +110,5 @@
 
       </div>
       <!-- /.row -->
-      
+
       <!-- Your Page Content Here -->
-    

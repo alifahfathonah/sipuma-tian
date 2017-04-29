@@ -46,9 +46,12 @@
                 <td><?php echo $artikels->status; ?></td>
 
                 <td>
-                  <button class="btn btn-warning" onclick="edit_artikel(<?php echo $artikels->id;?>)"><i class="glyphicon glyphicon-pencil"></i></button>
-                  <button class="btn btn-danger" onclick="delete_artikel(<?php echo $artikels->id;?>)"><i class="glyphicon glyphicon-remove"></i></button>
-
+                <!--
+                <button class="btn btn-warning" onclick="edit_artikel(<?php echo $artikels->id;?>)"><i class="glyphicon glyphicon-pencil"></i></button>
+                <button class="btn btn-danger" onclick="delete_artikel(<?php echo $artikels->id;?>)"><i class="glyphicon glyphicon-remove"></i></button>
+              -->
+                <a href="<?= base_url()?>C_Admin/artikeledit/<?= $artikels->id ?>"><span class="label label-warning">Edit</span></a>
+                <a onclick="return confirm('Anda Yakin ?')" href="<?= base_url()?>C_Admin/artikeldelete/<?= $artikels->id ?>"><span class="label label-danger">Delete</span></a>
 
                 </td>
               </tr>
@@ -110,7 +113,7 @@
             dataType: "JSON",
             success: function(data)
             {
-               
+
                location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -130,6 +133,5 @@
 
       </div>
       <!-- /.row -->
-      
+
       <!-- Your Page Content Here -->
-    

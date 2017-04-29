@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('BASEPATH') or exit ('No script direct allowed');
 
 class C_Admin extends CI_Controller{
@@ -29,7 +29,7 @@ class C_Admin extends CI_Controller{
 
     if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
       redirect(base_url('C_Login'));
-    }else { 
+    }else {
       $data['user']=$this->M_admin->get_all_user();
       $this->load->view('element/Header_panel',$data);
       $this->load->view('element/V_Menu',$data);
@@ -78,7 +78,7 @@ class C_Admin extends CI_Controller{
 
 
 /*
-|-----------------------------------------------------------------------------------------------------------------
+|----------------------------------------------------------------------------------------------------------------------
 | BEGIN CRUD CONTENT
 |-----------------------------------------------------------------------------------------------------------------------
 */
@@ -89,7 +89,7 @@ class C_Admin extends CI_Controller{
     $this->load->helper('text');
     if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
       redirect(base_url('C_Login'));
-    }else { 
+    }else {
       $data['artikel']=$this->M_admin->get_all_artikel();
       $this->load->view('element/Header_panel',$data);
       $this->load->view('element/V_Menu',$data);
@@ -125,7 +125,7 @@ function form_artikel(){
 
     if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
       redirect(base_url('C_Login'));
-    }else { 
+    }else {
       $this->load->view('element/Header_panel',$data);
       $this->load->view('element/V_Menu',$data);
       $this->load->view('admin/artikel_form',$data2);
@@ -137,7 +137,7 @@ function artikelsave(){
 
     if($_POST){
 
-      date_default_timezone_set('Asia/Jakarta'); 
+      date_default_timezone_set('Asia/Jakarta');
 
       $this->load->helper('url');
 
@@ -156,7 +156,7 @@ function artikelsave(){
       $status     = $this->input->post('status');
       $stat       = $this->input->post('stat');
 
-      
+
       if($stat == 'new'){
 
         if($_FILES['foto']['name'] != ""){
@@ -169,7 +169,7 @@ function artikelsave(){
           $config['max_width']  = '';
           $config['max_height']  = '';
           $this->load->library('upload', $config);
-          $this->upload->initialize($config);            
+          $this->upload->initialize($config);
           if (!$this->upload->do_upload('foto'))
           {
               print_r('Ukuran File Terlalu Besar. Maksimal 2Mb');
@@ -181,7 +181,7 @@ function artikelsave(){
             if ($image['file_name'])
             {
                 $data['file1'] = $image['file_name'];
-            }        
+            }
             $img_header = $data['file1'];
           }
       }
@@ -197,7 +197,7 @@ function artikelsave(){
           'category'    => $kategori,
           'status'    => $status,
         );
-        
+
         $this->M_admin->insertdata('artikel',$data);
         redirect('C_Admin/artikel');
 
@@ -207,8 +207,8 @@ function artikelsave(){
         $this->db->where('id',$kode);
         $query  = $this->db->get('artikel');
         $row  = $query->row();
-        
-        unlink("./file/blog/$row->img_header");
+
+        unlink("./file/artikel/$row->img_header");
 
         if($_FILES['foto']['name'] != ""){
           $config['upload_path'] = 'file/artikel';
@@ -220,7 +220,7 @@ function artikelsave(){
           $config['max_width']  = '';
           $config['max_height']  = '';
           $this->load->library('upload', $config);
-          $this->upload->initialize($config);            
+          $this->upload->initialize($config);
           if (!$this->upload->do_upload('foto'))
           {
               print_r('Ukuran File Terlalu Besar. Maksimal 2Mb');
@@ -232,7 +232,7 @@ function artikelsave(){
             if ($image['file_name'])
             {
                 $data['file1'] = $image['file_name'];
-            }        
+            }
             $img_header = $data['file1'];
           }
         }
@@ -248,9 +248,9 @@ function artikelsave(){
           'category'    => $kategori,
           'status'    => $status,
         );
-        
-        $this->m_admin->updatedata('artikel',$data,array('id' => $kode));
-        redirect('panel/artikel');
+
+        $this->M_admin->updatedata('artikel',$data,array('id' => $kode));
+        redirect('C_Admin/artikel');
       }
 
     }
@@ -260,10 +260,47 @@ function artikelsave(){
 
   }
 
+  function artikeledit($kode = 0){
+    $sudah_login = $this->session->userdata('sudah_login');
+    $data['id_role'] = $this->session->userdata('id_role');
+    $data['username'] = $this->session->userdata('username');
 
+		date_default_timezone_set('Asia/Jakarta');
+		$user_data 		= $this->M_admin->user()->result_array();
+		$data_konten	= $this->M_admin->getArtikel("where id= '$kode' ")->result_array();
+		$data2 = array(
+			'title'			=> 'Edit Content Website',
+			'user'			=> $user_data[0]['username'],
+			'kode'			=> $data_konten[0]['id'],
+			'judul'			=> $data_konten[0]['title'],
+			'image'			=> $data_konten[0]['img_header'],
+			'content'		=> $data_konten[0]['content'],
+			'kategori'		=> $data_konten[0]['category'],
+			'status'		=> $data_konten[0]['status'],
+			'stat'			=> 'edit',
+		);
 
+    if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
+      redirect(base_url('C_Login'));
+    }else {
+    $this->load->view('element/Header_panel',$data,$data2);
+    $this->load->view('element/V_Menu',$data,$data2);
+    $this->load->view('admin/artikel_form',$data2,$data);
+    $this->load->view('element/Footer_panel',$data,$data2);
+    }
+	}
 
-}
+  function artikeldelete($kode = 0){
+
+		$this->db->where('id',$kode);
+		$query 	= $this->db->get('artikel');
+		$row	= $query->row();
+
+		unlink("./file/artikel/$row->img_header");
+
+		$hasil	= $this->M_admin->deldata('artikel',array('id' => $kode));
+		redirect('C_Admin/artikel');
+	}
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
@@ -271,5 +308,110 @@ function artikelsave(){
 |-----------------------------------------------------------------------------------------------------------------
 */
 
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| BEGIN CRUD ABOUT
+|-----------------------------------------------------------------------------------------------------------------
+*/
+
+function about(){
+ $sudah_login = $this->session->userdata('sudah_login');
+  $data['id_role'] = $this->session->userdata('id_role');
+  $data['username'] = $this->session->userdata('username');
+  $this->load->helper('text');
+  if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
+    redirect(base_url('C_Login'));
+  }else {
+    $data['about']=$this->M_admin->get_about();
+    $this->load->view('element/Header_panel',$data);
+    $this->load->view('element/V_Menu',$data);
+    $this->load->view('admin/data_about');
+    $this->load->view('element/Footer_panel',$data);
+  }
+}
+
+function aboutsave(){
+
+  if($_POST){
+    date_default_timezone_set('Asia/Jakarta');
+    $this->load->helper('url');
+    $content    = $this->input->post('content');
+      $this->db->where('id_about',$id_about);
+      $query  = $this->db->get('about');
+      $row  = $query->row();
+      unlink("./file/about/$row->img");
+      if($_FILES['foto']['name'] != ""){
+        $config['upload_path'] = 'file/artikel';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '2000';
+        $config['remove_spaces'] = true;
+        $config['overwrite'] = false;
+        $config['encrypt_name'] = true;
+        $config['max_width']  = '';
+        $config['max_height']  = '';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload('foto'))
+        {
+            print_r('Ukuran File Terlalu Besar. Maksimal 2Mb');
+            exit();
+        }
+        else
+        {
+          $image = $this->upload->data();
+          if ($image['file_name'])
+          {
+              $data['file1'] = $image['file_name'];
+          }
+          $img = $data['file1'];
+        }
+      }
+
+      $data = array(
+        'img'          =>$img,
+        'content'      =>$content,
+      );
+
+      $this->M_admin->updatedata('about',$data,array('id_about' => $id_about));
+      redirect('C_Admin/about');
+    }
+    else {
+    echo "Page Not Found";
+    }
+
+  }
+
+function aboutedit($id_about = 0){
+  $sudah_login = $this->session->userdata('sudah_login');
+  $data['id_role'] = $this->session->userdata('id_role');
+  $data['username'] = $this->session->userdata('username');
+
+  date_default_timezone_set('Asia/Jakarta');
+  $user_data 		= $this->M_admin->user()->result_array();
+  $data_about	= $this->M_admin->getAbout("where id_about= '$id_about' ")->result_array();
+  $data2 = array(
+    'title'			=> 'Edit Content Website',
+    'img'		    => $data_about[0]['img'],
+    'content'		=> $data_about[0]['content'],
+    'stat'			=> 'edit',
+  );
+
+  if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
+    redirect(base_url('C_Login'));
+  }else {
+  $this->load->view('element/Header_panel',$data,$data2);
+  $this->load->view('element/V_Menu',$data,$data2);
+  $this->load->view('admin/about_form',$data2,$data);
+  $this->load->view('element/Footer_panel',$data,$data2);
+  }
+}
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| END CRUD ABOUT
+|-----------------------------------------------------------------------------------------------------------------
+*/
+
+}
 
 ?>

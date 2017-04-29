@@ -26,7 +26,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
     <script src="<?php echo base_url();?>assets/theme/assets/js/modernizr.js"></script>
   </head>
 
@@ -50,8 +50,13 @@
             <li><a href="about.html">ABOUT</a></li>
             <li><a href="contact.html">CONTACT</a></li>
             <li><a href="contact.html">EVENT</a></li>
-            <li><a href="<?php echo base_url()?>C_Admin/artikel">Artikel</a></li>
-
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">BERITA<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="<?php echo base_url()?>C_front/pengumuman">PENGUMUMAN</a></li>
+                <li><a href="single-post.html">EVENT/SEMINAR</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

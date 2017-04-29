@@ -2,7 +2,7 @@
 
 class M_admin extends CI_Model {
 	var $table = 'user';
-	
+
 	function __construct() {
 		parent::__construct();
 	}
@@ -10,7 +10,7 @@ class M_admin extends CI_Model {
 	function user(){
 		return $this->db->query("select * from user");
 	}
-	
+
 /*
 |-----------------------------------------------------------------------------------------------------------------
 | BEGIN MODEL CRUD USER
@@ -72,6 +72,18 @@ public function get_all_artikel() {
 		return $this->db->insert($tabel,$data);
 	}
 
+	function getArtikel($where= ''){
+		return $this->db->query("select * from artikel $where;");
+	}
+
+	function updatedata($tabel,$data,$where){
+		return $this->db->update($tabel,$data,$where);
+	}
+
+	function deldata($tabel,$where){
+		return $this->db->delete($tabel,$where);
+	}
+
 	public function get_by_id_artikel($id) {
 		$this->db->from($this->table);
 		$this->db->where('id',$id);
@@ -101,6 +113,30 @@ public function get_all_artikel() {
 /*
 |-----------------------------------------------------------------------------------------------------------------
 | END MODEL CRUD ARTIKEL
+|-----------------------------------------------------------------------------------------------------------------
+*/
+
+public function get_about() {
+	$this->db->from('about');
+	$query=$this->db->get();
+	return $query->result();
+}
+
+function getAbout($where= ''){
+	return $this->db->query("select * from about $where;");
+}
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| BEGIN MODEL CRUD ABOUT
+|-----------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+/*
+|-----------------------------------------------------------------------------------------------------------------
+| END MODEL CRUD ABOUT
 |-----------------------------------------------------------------------------------------------------------------
 */
 

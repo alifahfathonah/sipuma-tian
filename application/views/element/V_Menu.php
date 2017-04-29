@@ -8,13 +8,14 @@
         <li class="active"><a href="<?php echo base_url();?>C_Login/berhasil_login"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
          <li><a href="<?php echo base_url()?>C_Admin/user"><i class="fa fa-users"></i> <span>User</span></a></li>
          <li><a href="<?php echo base_url()?>C_Admin/artikel">Artikel</a></li>
+         <li><a href="<?php echo base_url()?>C_Admin/about">About</a></li>
          <li><a href="#"><i class="fa fa-envelope"></i> <span>Contact</span></a></li>
          <li class="header">EXIT</li>
          <li><a href="<?php echo base_url();?>C_Login/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       <!-- ================= END LEVEL = 1 ========================================================== -->
 
       <!-- =================  BEGIN LEVEL = 2===========================================================-->
-      <?php } 
+      <?php }
       elseif ($id_role=="2") { ?>
       <li class="header">MAIN</li>
       <!-- Optionally, you can add icons to the links -->
@@ -31,7 +32,7 @@
          <li><a href="#"><i class="fa fa-envelope"></i> <span>Contact</span></a></li>
          <li class="header">EXIT</li>
          <li><a href="<?php echo base_url();?>C_Login/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
-      <?php } ?> 
+      <?php } ?>
       <!-- =========================END LEVEL = 2====================================================== -->
       </ul>
       <!-- /.sidebar-menu -->

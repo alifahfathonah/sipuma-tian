@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url'] = "";
+$config ['site_url'] = 'http://localhost/sipuma-tian';
+$config['base_url'] = 'http://localhost/sipuma-tian';
 //http://localhost/sipuma-tians
 /*
 |--------------------------------------------------------------------------

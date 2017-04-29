@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('BASEPATH') or exit ('No direct script allowed ');
 
 class C_front extends CI_Controller {
@@ -10,6 +10,10 @@ class C_front extends CI_Controller {
 		$this->load->view('front/Header');
 		$this->load->view('Home');
 		$this->load->view('front/Footer');
+	}
+
+	public function pengumuman(){
+		$this->load->view('pengumuman');
 	}
 }
 
