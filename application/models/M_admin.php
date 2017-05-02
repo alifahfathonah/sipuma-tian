@@ -2,6 +2,7 @@
 
 class M_admin extends CI_Model {
 	var $table = 'user';
+	var $table2 = 'link_external';
 
 	function __construct() {
 		parent::__construct();
@@ -52,7 +53,7 @@ class M_admin extends CI_Model {
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| BEGIN MODEL CRUD USER
+| END MODEL CRUD USER
 |-----------------------------------------------------------------------------------------------------------------
 */
 
@@ -128,15 +129,41 @@ function getAbout($where= ''){
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| BEGIN MODEL CRUD ABOUT
+| BEGIN MODEL CRUD USER
 |-----------------------------------------------------------------------------------------------------------------
 */
+	public function get_all_link() {
+		$this->db->from('link_external');
+		$query=$this->db->get();
+		return $query->result();
+	}
 
+	public function get_by_idlink($id) {
+		$this->db->from($this->table2);
+		$this->db->where('id_link',$id);
+		$query = $this->db->get();
 
+		return $query->row();
+	}
+
+	public function addlink_db($data) {
+		$this->db->insert($this->table2, $data);
+		return $this->db->insert_id();
+	}
+
+	public function updlink_db($where, $data) {
+		$this->db->update($this->table2, $data, $where);
+		return $this->db->affected_rows();
+	}
+
+	public function dellink_db($id) {
+		$this->db->where('id_link', $id);
+		$this->db->delete($this->table2);
+	}
 
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| END MODEL CRUD ABOUT
+| END MODEL CRUD USER
 |-----------------------------------------------------------------------------------------------------------------
 */
 

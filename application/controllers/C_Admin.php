@@ -308,109 +308,64 @@ function artikelsave(){
 |-----------------------------------------------------------------------------------------------------------------
 */
 
-
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| BEGIN CRUD ABOUT
+| BEGIN CRUD LINK EKSTERNAL
 |-----------------------------------------------------------------------------------------------------------------
 */
+public function link_ex(){
+    $sudah_login = $this->session->userdata('sudah_login');
+    $data['id_role'] = $this->session->userdata('id_role');
+    $data['username'] = $this->session->userdata('username');
 
-function about(){
- $sudah_login = $this->session->userdata('sudah_login');
-  $data['id_role'] = $this->session->userdata('id_role');
-  $data['username'] = $this->session->userdata('username');
-  $this->load->helper('text');
-  if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
-    redirect(base_url('C_Login'));
-  }else {
-    $data['about']=$this->M_admin->get_about();
-    $this->load->view('element/Header_panel',$data);
-    $this->load->view('element/V_Menu',$data);
-    $this->load->view('admin/data_about');
-    $this->load->view('element/Footer_panel',$data);
+    if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
+      redirect(base_url('C_Login'));
+    }else {
+      $data['link_external']=$this->M_admin->get_all_link();
+      $this->load->view('element/Header_panel',$data);
+      $this->load->view('element/V_Menu',$data);
+      $this->load->view('admin/data_linkex');
+      $this->load->view('element/Footer_panel',$data);
+    }
   }
-}
 
-function aboutsave(){
+  public function link_add(){
+    $data = array(
+      'id_link'  => $this->input->post('id_link'),
+      'nama_link' => $this->input->post('nama_link'),
+      'url' => $this->input->post('url'),
+      
+    );
+    $insert = $this->M_admin->addlink_db($data);
+    echo json_encode(array("status" => TRUE));
+  }
 
-  if($_POST){
-    date_default_timezone_set('Asia/Jakarta');
-    $this->load->helper('url');
-    $content    = $this->input->post('content');
-      $this->db->where('id_about',$id_about);
-      $query  = $this->db->get('about');
-      $row  = $query->row();
-      unlink("./file/about/$row->img");
-      if($_FILES['foto']['name'] != ""){
-        $config['upload_path'] = 'file/artikel';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size'] = '2000';
-        $config['remove_spaces'] = true;
-        $config['overwrite'] = false;
-        $config['encrypt_name'] = true;
-        $config['max_width']  = '';
-        $config['max_height']  = '';
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        if (!$this->upload->do_upload('foto'))
-        {
-            print_r('Ukuran File Terlalu Besar. Maksimal 2Mb');
-            exit();
-        }
-        else
-        {
-          $image = $this->upload->data();
-          if ($image['file_name'])
-          {
-              $data['file1'] = $image['file_name'];
-          }
-          $img = $data['file1'];
-        }
-      }
+  public function link_edit($id) {
+    $data = $this->M_admin->get_by_idlink($id);
+    echo json_encode($data);
+  }
 
-      $data = array(
-        'img'          =>$img,
-        'content'      =>$content,
+  public function update_link() {
+    $data = array(
+      'id_link'  => $this->input->post('id_link'),
+      'nama_link' => $this->input->post('nama_link'),
+      'url' => $this->input->post('url'),
       );
-
-      $this->M_admin->updatedata('about',$data,array('id_about' => $id_about));
-      redirect('C_Admin/about');
-    }
-    else {
-    echo "Page Not Found";
-    }
-
+    $this->M_admin->updlink_db(array('id_link' => $this->input->post('id_link')), $data);
+    echo json_encode(array("status" => TRUE));
   }
 
-function aboutedit($id_about = 0){
-  $sudah_login = $this->session->userdata('sudah_login');
-  $data['id_role'] = $this->session->userdata('id_role');
-  $data['username'] = $this->session->userdata('username');
-
-  date_default_timezone_set('Asia/Jakarta');
-  $user_data 		= $this->M_admin->user()->result_array();
-  $data_about	= $this->M_admin->getAbout("where id_about= '$id_about' ")->result_array();
-  $data2 = array(
-    'title'			=> 'Edit Content Website',
-    'img'		    => $data_about[0]['img'],
-    'content'		=> $data_about[0]['content'],
-    'stat'			=> 'edit',
-  );
-
-  if (!$sudah_login) { // jika $sudah_login == false atau belum login maka akan kembali ke redirect yang di tuju
-    redirect(base_url('C_Login'));
-  }else {
-  $this->load->view('element/Header_panel',$data,$data2);
-  $this->load->view('element/V_Menu',$data,$data2);
-  $this->load->view('admin/about_form',$data2,$data);
-  $this->load->view('element/Footer_panel',$data,$data2);
+  public function delete_link($id) {
+    $this->M_admin->dellink_db($id);
+    echo json_encode(array("status" => TRUE));
   }
-}
 /*
 |-----------------------------------------------------------------------------------------------------------------
-| END CRUD ABOUT
+| END CRUD LINK EKSTERNAL
 |-----------------------------------------------------------------------------------------------------------------
 */
+
+
 
 }
 

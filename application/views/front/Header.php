@@ -16,6 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url();?>assets/theme/assets/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/theme/assets/css/font-awesome.min.css" rel="stylesheet">
+       <link href="<?php echo base_url();?>assets/themes/home/css/animate.css" rel="stylesheet" media="screen" />
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -46,14 +47,13 @@
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">HOME</a></li>
+            <li class="active"><a href="<?php echo base_url()?>C_front">HOME</a></li>
             <li><a href="about.html">ABOUT</a></li>
             <li><a href="contact.html">CONTACT</a></li>
-            <li><a href="contact.html">EVENT</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">BERITA<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="<?php echo base_url()?>C_front/pengumuman">PENGUMUMAN</a></li>
+                <li><a href="<?php echo base_url()?>C_front/info">INFO</a></li>
                 <li><a href="single-post.html">EVENT/SEMINAR</a></li>
               </ul>
             </li>

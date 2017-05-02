@@ -8,7 +8,7 @@
         <li class="active"><a href="<?php echo base_url();?>C_Login/berhasil_login"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
          <li><a href="<?php echo base_url()?>C_Admin/user"><i class="fa fa-users"></i> <span>User</span></a></li>
          <li><a href="<?php echo base_url()?>C_Admin/artikel">Artikel</a></li>
-         <li><a href="<?php echo base_url()?>C_Admin/about">About</a></li>
+         <li><a href="<?php echo base_url()?>C_Admin/link_ex">Link External</a></li>
          <li><a href="#"><i class="fa fa-envelope"></i> <span>Contact</span></a></li>
          <li class="header">EXIT</li>
          <li><a href="<?php echo base_url();?>C_Login/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>

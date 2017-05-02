@@ -61,11 +61,9 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Category    </label>
                                             <select name="kategori"  class="form-control">
-                                                <option value="news"> News</option>
+                                                <option value="berita"> Berita</option>
                                                 <option value="pengumuman"> Pengumuman</option>
-                                                <option value="kampus"> kampus</option>
-                                                <option value="elearning"> E-Learning</option>
-                                                <option value="lain-lain"> Lain-lain</option>
+
                                             </select>
                                         </div>
 
