@@ -14,6 +14,9 @@
     <link href="<?php echo base_url();?>assets/theme/assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+
+    <link href="<?php echo base_url();?>assets/theme/assets/css/image-style.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/theme/assets/css/pagination-style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/theme/assets/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/theme/assets/css/font-awesome.min.css" rel="stylesheet">
        <link href="<?php echo base_url();?>assets/themes/home/css/animate.css" rel="stylesheet" media="screen" />
@@ -29,9 +32,19 @@
     <![endif]-->
 
     <script src="<?php echo base_url();?>assets/theme/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=590bf30cef4e1400122869e4&product=inline-share-buttons"></script>
   </head>
 
   <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.9&appId=930671203663717";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -57,6 +70,8 @@
                 <li><a href="single-post.html">EVENT/SEMINAR</a></li>
               </ul>
             </li>
+            <li><a href="<?php echo base_url()?>C_front/berita">BERITA</a></li>
+            <li><a href="<?php echo base_url()?>C_front/pengumuman">PENGUMUMAN</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url();?>assets/theme/assets/css/bootstrap.css" rel="stylesheet">
-
+    <link href="<?php echo base_url();?>assets/theme/assets/css/pagination-style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url();?>assets/theme/assets/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/theme/assets/css/font-awesome.min.css" rel="stylesheet">

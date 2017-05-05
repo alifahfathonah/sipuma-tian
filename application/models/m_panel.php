@@ -8,6 +8,8 @@ class M_panel extends CI_Model {
 	function login($where = ''){
 		return $this->db->query("select * from users $where;");
 	}
+
+	
 }
 
 ?>

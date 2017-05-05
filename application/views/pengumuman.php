@@ -18,12 +18,17 @@
 	 <div class="container mtb">
 	 	<div class="row">
 	 		<! -- BLOG POSTS LIST -->
-	 		<div class="col-lg-12">
+	 			<div class="col-lg-12">
+		 	</div>
 
-	 		</div>
+
 	 		<! -- SIDEBAR -->
-	 	</div><! --/row -->
+	 	</div>
+	 	<! --/row -->
 
+
+
+	 	<div class="spacing"></div>
 	 <div class="col-lg-4">
 	 		<div class="row">
 	 		<h4>Berita</h4>
@@ -84,6 +89,21 @@
 		                </li>
 		            </ul>
 		        <?php endforeach ?>
+	 	</div>
+	 </div>
+
+	 <div class="col-lg-4">
+	 	<div class="row">
+	 		<h4><i class="fa fa-tags"></i> Eksternal Link</h4>
+		 		<div class="hline"></div>
+		 			<?php foreach ($link_ex as $l): ?>
+					<ul class="">
+		                <li>
+		                    <h5 class="blog-list-title"><a target="_blank" href="<?=$l['url']?>">
+                            <i class="fa fa-tags"></i> <?=$l['nama_link']?></a></h5>
+		                </li>
+		            </ul>
+		       		 <?php endforeach ?>
 	 	</div>
 	 </div>
 	 </div><! --/container -->

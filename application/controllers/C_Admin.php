@@ -140,6 +140,7 @@ function artikelsave(){
       date_default_timezone_set('Asia/Jakarta');
 
       $this->load->helper('url');
+      $this->load->library('image_lib');
 
       $kode     = $this->input->post('kode');
       $judul      = $this->input->post('judul');
@@ -168,7 +169,7 @@ function artikelsave(){
           $config['encrypt_name'] = true;
           $config['max_width']  = '';
           $config['max_height']  = '';
-          $this->load->library('upload', $config);
+          $this->load->library('upload','image_lib', $config);
           $this->upload->initialize($config);
           if (!$this->upload->do_upload('foto'))
           {
@@ -178,6 +179,8 @@ function artikelsave(){
           else
           {
             $image = $this->upload->data();
+
+            
             if ($image['file_name'])
             {
                 $data['file1'] = $image['file_name'];
